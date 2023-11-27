@@ -38,23 +38,21 @@ class ContactAddFragment : Fragment() {
         val emailEditText: EditText = view.findViewById(R.id.email_edittext)
         val addressEditText: EditText = view.findViewById(R.id.address_edittext)
 
-        val name = nameEditText.text.toString()
-        val phoneNumber = phoneNumberEditText.text.toString()
-        val email = emailEditText.text.toString()
-        val address = addressEditText.text.toString()
 
-//        val bundle = Bundle()
-//        bundle.putString("new_name", name)
-//        bundle.putString("new_phoneNumber", phoneNumber)
-//        bundle.putString("new_email", email)
-//        bundle.putString("new_address", address)
 
 
         val submitBtn: Button = view.findViewById(R.id.submit_btn)
         submitBtn.setOnClickListener {
-            val fragment1 = requireActivity().supportFragmentManager.fragments.firstOrNull { it is ContactListFragment } as ContactListFragment?
-            fragment1?.addContact(Contact(27, "avatar", name, phoneNumber, email, address ))
-            findNavController().navigate(R.id.action_contactAddFragment_to_contactListFragment)
+            val name = nameEditText.text.toString()
+            val phoneNumber = phoneNumberEditText.text.toString()
+            val email = emailEditText.text.toString()
+            val address = addressEditText.text.toString()
+            val bundle = Bundle()
+            bundle.putString("new_name", name)
+        bundle.putString("new_phoneNumber", phoneNumber)
+        bundle.putString("new_email", email)
+        bundle.putString("new_address", address)
+            findNavController().navigate(R.id.action_contactAddFragment_to_contactListFragment, bundle)
         }
 
     }

@@ -61,18 +61,14 @@ class ContactListFragment : Fragment(), MenuProvider {
         contacts.add(Contact(25,"avatar24","Yario", "091092019","Yario@gmail.com", "Nam Dinh"))
         contacts.add(Contact(26,"avatar25","Zario", "091092019","Zario@gmail.com", "Nam Dinh"))
 
-//        val newName = arguments?.getString("new_name")
-//        val newPhoneNumber = arguments?.getString("new_phoneNumber")
-//        val newEmail = arguments?.getString("new_email")
-//        val newAddress = arguments?.getString("new_address")
-//        println(newName)
-//        println(newPhoneNumber)
-//        println(newEmail)
-//        println(newAddress)
-//        if (newName != null && newPhoneNumber != null && newEmail != null && newAddress != null) {
-//            contacts.add(Contact(contacts.size, "avatar", newName.toString(), newPhoneNumber.toString(), newEmail.toString(), newAddress.toString()))
-//
-//        }
+        val newName = arguments?.getString("new_name")
+        val newPhoneNumber = arguments?.getString("new_phoneNumber")
+        val newEmail = arguments?.getString("new_email")
+        val newAddress = arguments?.getString("new_address")
+        if (newName != null && newPhoneNumber != null && newEmail != null && newAddress != null) {
+            contacts.add(Contact(contacts.size +1 , "avatar", newName, newPhoneNumber, newEmail, newAddress))
+
+        }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.list_contact_rv)
         val contactAdapter = ContactAdapter(this, contacts)
@@ -104,13 +100,6 @@ class ContactListFragment : Fragment(), MenuProvider {
         }
         }
         return false
-    }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun addContact(contact: Contact) {
-        contacts.add(contact)
-        contactAdapter.notifyDataSetChanged()
     }
 }
 
